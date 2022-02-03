@@ -1,6 +1,7 @@
 package com.fluig.desafiobackend.controller;
 
 import com.fluig.desafiobackend.dto.PrevisaoGastosDTO;
+import com.fluig.desafiobackend.dto.VeiculoDTO;
 import com.fluig.desafiobackend.model.Veiculo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

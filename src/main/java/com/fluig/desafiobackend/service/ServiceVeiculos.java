@@ -2,6 +2,7 @@ package com.fluig.desafiobackend.service;
 
 import com.fluig.desafiobackend.dto.PrevisaoGastosDTO;
 import com.fluig.desafiobackend.dto.RakingGastosDTO;
+import com.fluig.desafiobackend.dto.VeiculoDTO;
 import com.fluig.desafiobackend.model.Veiculo;
 import com.fluig.desafiobackend.repositories.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ServiceVeiculos {
         return veiculoRepository.findAll();
     }
 
-    public List<RakingGastosDTO> ranking(List<Veiculo> veiculos, PrevisaoGastosDTO previsaoGastosDTO){
+    public List<RakingGastosDTO> gastos(List<Veiculo> veiculos, PrevisaoGastosDTO previsaoGastosDTO){
         List<RakingGastosDTO> finalRakingGastosDTO = new ArrayList<>();
         veiculos.forEach((veiculo -> {
             double percorridoCidade = previsaoGastosDTO.getPercorridoCidade() / veiculo.getConsumoCidade();
@@ -38,5 +39,17 @@ public class ServiceVeiculos {
         }));
         List<RakingGastosDTO> rakingGastosDTO = finalRakingGastosDTO.stream().sorted(Comparator.comparing(RakingGastosDTO::getValorTotal).reversed()).collect(Collectors.toList());
         return rakingGastosDTO;
+    }
+
+    public List<Veiculo> ranking(List<RakingGastosDTO> rakingGastosDTO, List<Veiculo> veiculos){
+        List<Veiculo> veiculosRakeados = new ArrayList<>();
+        rakingGastosDTO.forEach((rankeados -> {
+            veiculos.forEach((veiculo -> {
+                if(veiculo.getId() == rankeados.getId()){
+                    veiculosRakeados.add(veiculo);
+                }
+            }));
+        }));
+        return veiculosRakeados;
     }
 }
