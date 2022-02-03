@@ -17,5 +17,5 @@ public interface IVeiculoApi {
     ResponseEntity<Veiculo> saveVeiculos(@RequestBody Veiculo veiculo);
 
     @PostMapping(value = "/previsao", produces = {"application/json"})
-    ResponseEntity<List<Veiculo>> findVeiculos(@RequestBody PrevisaoGastosDTO previsaoGastosDTO);
+    ResponseEntity<List<Veiculo>> findVeiculosRankeados(@RequestBody PrevisaoGastosDTO previsaoGastosDTO);
 }
