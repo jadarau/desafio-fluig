@@ -31,7 +31,7 @@ public class VeiculoApiController implements IVeiculoApi {
     public ResponseEntity<List<Veiculo>> findVeiculos(@RequestBody PrevisaoGastosDTO previsaoGastosDTO){
             List<RakingGastosDTO> rakingGastosDTO = new ArrayList<>();
             List<Veiculo> veiculos = serviceVeiculos.findVeiculos();
-            rakingGastosDTO = serviceVeiculos.ranking(veiculos, rakingGastosDTO, previsaoGastosDTO);
+            rakingGastosDTO = serviceVeiculos.ranking(veiculos, previsaoGastosDTO);
 
         return ResponseEntity.ok(veiculos);
     }
