@@ -2,6 +2,7 @@ package com.fluig.desafiobackend.controller;
 
 import com.fluig.desafiobackend.dto.PrevisaoGastosDTO;
 import com.fluig.desafiobackend.dto.VeiculoDTO;
+import com.fluig.desafiobackend.dto.VeiculoRankeadoDTO;
 import com.fluig.desafiobackend.model.Veiculo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,5 +18,5 @@ public interface IVeiculoApi {
     ResponseEntity<Veiculo> saveVeiculos(@RequestBody Veiculo veiculo);
 
     @PostMapping(value = "/previsao", produces = {"application/json"})
-    ResponseEntity<List<Veiculo>> findVeiculosRankeados(@RequestBody PrevisaoGastosDTO previsaoGastosDTO);
+    ResponseEntity<List<VeiculoRankeadoDTO>> findVeiculosRankeados(@RequestBody PrevisaoGastosDTO previsaoGastosDTO);
 }

@@ -3,6 +3,7 @@ package com.fluig.desafiobackend.service;
 import com.fluig.desafiobackend.dto.PrevisaoGastosDTO;
 import com.fluig.desafiobackend.dto.RakingGastosDTO;
 import com.fluig.desafiobackend.dto.VeiculoDTO;
+import com.fluig.desafiobackend.dto.VeiculoRankeadoDTO;
 import com.fluig.desafiobackend.model.Veiculo;
 import com.fluig.desafiobackend.repositories.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,12 +42,22 @@ public class ServiceVeiculos {
         return rakingGastosDTO;
     }
 
-    public List<Veiculo> ranking(List<RakingGastosDTO> rakingGastosDTO, List<Veiculo> veiculos){
-        List<Veiculo> veiculosRakeados = new ArrayList<>();
+    public List<VeiculoRankeadoDTO> ranking(List<RakingGastosDTO> rakingGastosDTO, List<Veiculo> veiculos){
+        List<VeiculoRankeadoDTO> veiculosRakeados = new ArrayList<>();
         rakingGastosDTO.forEach((rankeados -> {
             veiculos.forEach((veiculo -> {
                 if(veiculo.getId() == rankeados.getId()){
-                    veiculosRakeados.add(veiculo);
+                    final var veiculosrankeados = VeiculoRankeadoDTO.builder()
+                            .id(veiculo.getId())
+                                    .nome(veiculo.getNome())
+                                            .marca(veiculo.getMarca())
+                                                    .modelo(veiculo.getModelo())
+                                                            .fabricacao(veiculo.getFabricacao())
+                                                                    .consumoCidade(veiculo.getConsumoCidade())
+                                                                            .consumoRodovias(veiculo.getConsumoRodovias())
+                                                                                    .totalgasto(rankeados.getValorTotal())
+                                                                                            .build();
+                    veiculosRakeados.add(veiculosrankeados);
                 }
             }));
         }));

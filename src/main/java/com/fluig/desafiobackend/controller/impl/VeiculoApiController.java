@@ -4,6 +4,7 @@ import com.fluig.desafiobackend.controller.IVeiculoApi;
 import com.fluig.desafiobackend.dto.PrevisaoGastosDTO;
 import com.fluig.desafiobackend.dto.RakingGastosDTO;
 import com.fluig.desafiobackend.dto.VeiculoDTO;
+import com.fluig.desafiobackend.dto.VeiculoRankeadoDTO;
 import com.fluig.desafiobackend.model.Veiculo;
 import com.fluig.desafiobackend.service.ServiceVeiculos;
 import lombok.extern.slf4j.Slf4j;
@@ -29,12 +30,12 @@ public class VeiculoApiController implements IVeiculoApi {
     }
 
     @Override
-    public ResponseEntity<List<Veiculo>> findVeiculosRankeados(@RequestBody PrevisaoGastosDTO previsaoGastosDTO){
+    public ResponseEntity<List<VeiculoRankeadoDTO>> findVeiculosRankeados(@RequestBody PrevisaoGastosDTO previsaoGastosDTO){
             List<RakingGastosDTO> rakingGastosDTO = new ArrayList<>();
             List<Veiculo> veiculos = serviceVeiculos.findVeiculos();
             rakingGastosDTO = serviceVeiculos.gastos(veiculos, previsaoGastosDTO);
-            veiculos = serviceVeiculos.ranking(rakingGastosDTO, veiculos);
+            List<VeiculoRankeadoDTO> veiculoRankeadoDTOS = serviceVeiculos.ranking(rakingGastosDTO, veiculos);
 
-        return ResponseEntity.ok(veiculos);
+        return ResponseEntity.ok(veiculoRankeadoDTOS);
     }
 }
