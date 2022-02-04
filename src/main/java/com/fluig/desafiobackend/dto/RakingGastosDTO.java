@@ -12,8 +12,7 @@ import lombok.experimental.SuperBuilder;
 @Builder
 public class RakingGastosDTO {
 
-    @JsonProperty("Id")
     private long id;
-    @JsonProperty("Valor total gasto")
+
     private double valorTotal;
 }

@@ -14,11 +14,11 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public class PrevisaoGastosDTO {
 
-    @JsonProperty
+    @JsonProperty(value = "Preço da Gasolina")
     private double precoGasolina;
-    @JsonProperty
+    @JsonProperty(value = "Km total que será percorrido na cidade")
     private Integer percorridoCidade;
-    @JsonProperty
+    @JsonProperty(value = "Km total que será percorrido nas rodovias")
     private Integer percorridoRodovias;
 
 }

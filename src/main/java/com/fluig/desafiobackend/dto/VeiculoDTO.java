@@ -26,8 +26,8 @@ public class VeiculoDTO {
     private String modelo;
     @JsonProperty("Data de fabricação")
     private Date fabricacao;
-    @JsonProperty("Consumo na cidade")
+    @JsonProperty("Consumo médio na cidade")
     private double consumoCidade;
-    @JsonProperty("Consumo em rodovias")
+    @JsonProperty("Consumo médio em rodovias")
     private double consumoRodovias;
 }

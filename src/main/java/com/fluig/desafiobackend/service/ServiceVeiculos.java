@@ -63,4 +63,21 @@ public class ServiceVeiculos {
         }));
         return veiculosRakeados;
     }
+
+    public List<VeiculoDTO> getAll(List<Veiculo> veiculos){
+        List<VeiculoDTO> veiculoDTOS = new ArrayList<>();
+        veiculos.forEach((veiculo -> {
+            final var veiculoDTO = VeiculoDTO.builder()
+                    .id(veiculo.getId())
+                    .nome(veiculo.getNome())
+                    .marca(veiculo.getMarca())
+                    .modelo(veiculo.getModelo())
+                    .fabricacao(veiculo.getFabricacao())
+                    .consumoCidade(veiculo.getConsumoCidade())
+                    .consumoRodovias(veiculo.getConsumoRodovias())
+                    .build();
+            veiculoDTOS.add(veiculoDTO);
+        }));
+        return veiculoDTOS;
+    }
 }

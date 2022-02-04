@@ -38,4 +38,11 @@ public class VeiculoApiController implements IVeiculoApi {
 
         return ResponseEntity.ok(veiculoRankeadoDTOS);
     }
+
+    @Override
+    public ResponseEntity<List<VeiculoDTO>> findAll() {
+        List<Veiculo> veiculos = serviceVeiculos.findVeiculos();
+        List<VeiculoDTO> veiculoDTOS = serviceVeiculos.getAll(veiculos);
+        return ResponseEntity.ok(veiculoDTOS);
+    }
 }
