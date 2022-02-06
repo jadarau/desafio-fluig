@@ -11,7 +11,7 @@
 
 1 - Para consultar os veículos existentes, basta utilizar o endpoint: GET - localhost:8090/ficticius/veiculos (veículo no plural);
 
-2 - Para inserir novos veículos, basta utilizar o endpoint: POST - localhost:8090/ficticius/veiculo (véiculo no singular). Também é necessário informar o JSON do corpo da requisição, conforme abaixo;
+2 - Para inserir novos veículos, basta utilizar o endpoint: POST - "localhost:8090/ficticius/veiculo" (véiculo no singular). Também é necessário informar o JSON do corpo da requisição, conforme abaixo;
 
 {
     "nome": "HB20",
@@ -22,7 +22,7 @@
     "consumoRodovias": 14
 }
 
-3 - Para consultar a previsão de gastos com combustível dos veículos cadastrados, basta utilizar o endpoint: POST - localhost:8090/ficticius/previsao. Também é necessário informar o JSON do corpo da requisição, conforme abaixo;
+3 - Para consultar a previsão de gastos com combustível dos veículos cadastrados, basta utilizar o endpoint: POST - "localhost:8090/ficticius/previsao". Também é necessário informar o JSON do corpo da requisição, conforme abaixo;
 
 {
     "Preço da Gasolina": 6.90,
