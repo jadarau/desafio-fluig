@@ -34,8 +34,8 @@ public class ServiceVeiculos implements IServiceVeiculos{
             double percorridoCidade = previsaoGastosDTO.getPercorridoCidade() / veiculo.getConsumoCidade();
             double percorridoRodovias = previsaoGastosDTO.getPercorridoRodovias() / veiculo.getConsumoRodovias();
             double totalPercorrido = percorridoCidade + percorridoRodovias;
-            double valorGato = totalPercorrido * previsaoGastosDTO.getPrecoGasolina();
-            RakingGastosDTO rakingGastos = new RakingGastosDTO(veiculo.getId(), valorGato);
+            double valorGasto = totalPercorrido * previsaoGastosDTO.getPrecoGasolina();
+            RakingGastosDTO rakingGastos = new RakingGastosDTO(veiculo.getId(), valorGasto);
             finalRakingGastosDTO.add(rakingGastos);
         }));
         List<RakingGastosDTO> rakingGastosDTO = finalRakingGastosDTO.stream().sorted(Comparator.comparing(RakingGastosDTO::getValorTotal).reversed()).collect(Collectors.toList());
