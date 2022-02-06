@@ -6,6 +6,7 @@ import com.fluig.desafiobackend.dto.RakingGastosDTO;
 import com.fluig.desafiobackend.dto.VeiculoDTO;
 import com.fluig.desafiobackend.dto.VeiculoRankeadoDTO;
 import com.fluig.desafiobackend.model.Veiculo;
+import com.fluig.desafiobackend.service.IServiceVeiculos;
 import com.fluig.desafiobackend.service.ServiceVeiculos;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import java.util.List;
 public class VeiculoApiController implements IVeiculoApi {
 
     @Autowired
-    private ServiceVeiculos serviceVeiculos;
+    private IServiceVeiculos serviceVeiculos;
 
     @Override
     public ResponseEntity<Veiculo> saveVeiculos(@RequestBody Veiculo veiculo) {
