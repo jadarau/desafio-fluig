@@ -4,6 +4,8 @@
 
 2 - Ao inicializar a API, serão criados, automaticamente, 4 veículos que tornarão os testes mais ágeis;
 
+3 - O banco de dados utilizado é o H2, que é executado em memória em tempo de execução, não havendo necessidade de instalação ou configuração.
+
 
 # Instruções de uso:
 
