@@ -17,7 +17,7 @@ import java.util.Date;
 public class Veiculo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
     private String nome;

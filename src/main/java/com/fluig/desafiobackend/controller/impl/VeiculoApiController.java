@@ -35,7 +35,6 @@ public class VeiculoApiController implements IVeiculoApi {
             List<Veiculo> veiculos = serviceVeiculos.findVeiculos();
             rakingGastosDTO = serviceVeiculos.gastos(veiculos, previsaoGastosDTO);
             List<VeiculoRankeadoDTO> veiculoRankeadoDTOS = serviceVeiculos.ranking(rakingGastosDTO, veiculos);
-
         return ResponseEntity.ok(veiculoRankeadoDTOS);
     }
 
