@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ServiceVeiculos {
+public class ServiceVeiculos implements IServiceVeiculos{
 
     @Autowired
     private VeiculoRepository veiculoRepository;
