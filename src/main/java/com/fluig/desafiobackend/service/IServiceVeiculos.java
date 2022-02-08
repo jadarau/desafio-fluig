@@ -14,7 +14,6 @@ public interface IServiceVeiculos {
 
     public Veiculo create(Veiculo veiculo);
     public List<Veiculo> findVeiculos();
-    public List<RakingGastosDTO> gastos(List<Veiculo> veiculos, PrevisaoGastosDTO previsaoGastosDTO);
-    public List<VeiculoRankeadoDTO> ranking(List<RakingGastosDTO> rakingGastosDTO, List<Veiculo> veiculos);
+    public List<VeiculoRankeadoDTO> ranking(List<Veiculo> veiculos, PrevisaoGastosDTO previsaoGastosDTO);
     public List<VeiculoDTO> getAll(List<Veiculo> veiculos);
 }

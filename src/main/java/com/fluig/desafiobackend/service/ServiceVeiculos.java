@@ -28,40 +28,29 @@ public class ServiceVeiculos implements IServiceVeiculos{
         return veiculoRepository.findAll();
     }
 
-    public List<RakingGastosDTO> gastos(List<Veiculo> veiculos, PrevisaoGastosDTO previsaoGastosDTO){
-        List<RakingGastosDTO> finalRakingGastosDTO = new ArrayList<>();
+    public List<VeiculoRankeadoDTO> ranking(List<Veiculo> veiculos, PrevisaoGastosDTO previsaoGastosDTO){
+        List<VeiculoRankeadoDTO> veiculosRakeados = new ArrayList<>();
         veiculos.forEach((veiculo -> {
             double percorridoCidade = previsaoGastosDTO.getPercorridoCidade() / veiculo.getConsumoCidade();
             double percorridoRodovias = previsaoGastosDTO.getPercorridoRodovias() / veiculo.getConsumoRodovias();
             double totalPercorrido = percorridoCidade + percorridoRodovias;
             double valorGasto = totalPercorrido * previsaoGastosDTO.getPrecoGasolina();
-            RakingGastosDTO rakingGastos = new RakingGastosDTO(veiculo.getId(), valorGasto);
-            finalRakingGastosDTO.add(rakingGastos);
-        }));
-        List<RakingGastosDTO> rakingGastosDTO = finalRakingGastosDTO.stream().sorted(Comparator.comparing(RakingGastosDTO::getValorTotal).reversed()).collect(Collectors.toList());
-        return rakingGastosDTO;
-    }
 
-    public List<VeiculoRankeadoDTO> ranking(List<RakingGastosDTO> rakingGastosDTO, List<Veiculo> veiculos){
-        List<VeiculoRankeadoDTO> veiculosRakeados = new ArrayList<>();
-        rakingGastosDTO.forEach((rankeados -> {
-            veiculos.forEach((veiculo -> {
-                if(veiculo.getId() == rankeados.getId()){
-                    final var veiculosrankeados = VeiculoRankeadoDTO.builder()
-                            .id(veiculo.getId())
-                                    .nome(veiculo.getNome())
-                                            .marca(veiculo.getMarca())
-                                                    .modelo(veiculo.getModelo())
-                                                            .fabricacao(veiculo.getFabricacao())
-                                                                    .consumoCidade(veiculo.getConsumoCidade())
-                                                                            .consumoRodovias(veiculo.getConsumoRodovias())
-                                                                                    .totalgasto(rankeados.getValorTotal())
-                                                                                            .build();
-                    veiculosRakeados.add(veiculosrankeados);
-                }
-            }));
+            final var veiculosrankeados = VeiculoRankeadoDTO.builder()
+                    .id(veiculo.getId())
+                    .nome(veiculo.getNome())
+                    .marca(veiculo.getMarca())
+                    .modelo(veiculo.getModelo())
+                    .fabricacao(veiculo.getFabricacao())
+                    .consumoCidade(veiculo.getConsumoCidade())
+                    .consumoRodovias(veiculo.getConsumoRodovias())
+                    .totalgasto(valorGasto)
+                    .build();
+            veiculosRakeados.add(veiculosrankeados);
+
         }));
-        return veiculosRakeados;
+        List<VeiculoRankeadoDTO> rakingGastosDTO = veiculosRakeados.stream().sorted(Comparator.comparing(VeiculoRankeadoDTO::getTotalgasto).reversed()).collect(Collectors.toList());
+        return rakingGastosDTO;
     }
 
     public List<VeiculoDTO> getAll(List<Veiculo> veiculos){
